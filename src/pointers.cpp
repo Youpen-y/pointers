@@ -1,28 +1,42 @@
 #include <iostream>
+#define SWAP(x,y,t) ((t)=(x),(x)=(y),(y)=(t))
 
 using namespace std;
 
-void myswap(int * ptr1, int* ptr2)
-{
-  auto temp = ptr1;
-  ptr1 = ptr2;
-  ptr2 = temp;
+void Swap1(int,int);   
+void Swap2(int *,int *);
+void Swap3(int &,int &);
+
+void Swap1(int x,int y){
+  auto temp = x;
+  x = y;
+  y = temp;
 }
 
+void Swap2(int* x,int* y){
+  auto temp = *x;
+  *x = *y;
+  *y = temp;
+}
+
+void Swap3(int &x,int &y){
+  auto temp = x;
+  x = y;
+  y = temp;
+}
 
 int main()
 {
-  int a = 25, b = 11;    
-
-  cout<<"What am I doing wrong ☹ \n\n";
-
+  int a = 25, b = 11;  
+  int temp;  
   cout<<"a = "<<a<<", b = "<<b<<endl;
-
-//swap(a,b); //why does theirs work????   
- 
-  myswap(a, b); // but mine doesn't ?!?!?!?!!!???
-
+  SWAP(a,b,temp);
   cout<<"a = "<<a<<", b = "<<b<<endl;
-
-
+  Swap1(a,b);
+  cout<<"a = "<<a<<", b = "<<b<<endl;
+  Swap2(&a,&b);
+  cout<<"a = "<<a<<", b = "<<b<<endl;
+  Swap3(a,b);
+  cout<<"a = "<<a<<", b = "<<b<<endl;
+  return 0;
 }
